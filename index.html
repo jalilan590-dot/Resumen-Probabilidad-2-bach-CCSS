@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen de Cálculo de Probabilidades</title>
+    <!-- Carga de Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuración para usar la fuente Inter -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7f9;
+        }
+        /* Estilo para las tablas */
+        table {
+            width: 100%;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-radius: 0.5rem;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+        th {
+            background-color: #1e40af; /* Azul oscuro */
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        tr:hover {
+            background-color: #f0f4f8;
+        }
+        /* Estilo para los bloques de fórmula grandes */
+        .math-block {
+            background-color: #e0f2fe; /* Azul claro para destacar */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            overflow-x: auto;
+        }
+        /* Ajuste para el separador visual */
+        .separator {
+            border-top: 2px solid #3b82f6;
+            margin: 3rem 0;
+        }
+    </style>
+    <!-- Carga de MathJax para renderizar las fórmulas LaTeX -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body class="p-8 md:p-12 lg:p-16">
+
+    <div class="max-w-4xl mx-auto bg-white p-6 md:p-10 rounded-xl shadow-2xl">
+
+        <h1 class="text-4xl font-extrabold text-blue-700 mb-6 border-b-4 border-blue-500 pb-2">
+            📊 Resumen Completo: Cálculo de Probabilidades
+        </h1>
+        <p class="text-gray-600 mb-10">
+            Esta guía abarca todos los conceptos y fórmulas clave necesarios para resolver problemas de probabilidad.
+        </p>
+
+        <div class="separator"></div>
+
+        <h2 class="text-3xl font-bold text-gray-800 mt-8 mb-4">I. Probabilidad Básica: Sucesos y Álgebra</h2>
+
+        <h3 class="text-xl font-semibold text-blue-600 mt-6 mb-3">1. Ley de Laplace (La Regla Inicial)</h3>
+        <p class="text-gray-700">Se aplica cuando todos los sucesos elementales son <strong>equiprobables</strong>.</p>
+        <div class="math-block">
+            $$P(A)=\frac{N^{\circ}~de~casos~favorables~al~suceso~A}{N^{\circ}~de~casos~posibles}$$
+        </div>
+
+        <h3 class="text-xl font-semibold text-blue-600 mt-8 mb-3">2. Fórmulas Fundamentales y Relaciones entre Sucesos</h3>
+
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead>
+                <tr>
+                    <th class="px-6 py-3 bg-blue-600 text-xs font-medium uppercase tracking-wider rounded-tl-lg">Concepto</th>
+                    <th class="px-6 py-3 bg-blue-600 text-xs font-medium uppercase tracking-wider">Notación</th>
+                    <th class="px-6 py-3 bg-blue-600 text-xs font-medium uppercase tracking-wider">Fórmula</th>
+                    <th class="px-6 py-3 bg-blue-600 text-xs font-medium uppercase tracking-wider rounded-tr-lg">Nota</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                <tr><td><strong>Suceso Contrario</strong></td><td>$A^{c}$ o $\bar{A}$</td><td>$P(A^{c})=1-P(A)$</td><td>La probabilidad de que <strong>no</strong> ocurra $A$.</td></tr>
+                <tr><td><strong>Unión</strong> ($A$ ó $B$)</td><td>$A\cup B$</td><td>$P(A\cup B)=P(A)+P(B)-P(A\cap B)$</td><td>Ocurre $A$, $B$, o ambos.</td></tr>
+                <tr><td><strong>Sucesos Incompatibles</strong></td><td>$A\cap B = \emptyset$</td><td>$P(A\cup B)=P(A)+P(B)$</td><td>Su intersección es cero.</td></tr>
+                <tr><td><strong>Diferencia</strong> ($A$ y no $B$)</td><td>$\mathbf{A\setminus B}$ o $\mathbf{A\cap B^{c}}$</td><td>$P(A\setminus B)=P(A)-P(A\cap B)$</td><td>Ocurre $A$ <strong>exclusivamente</strong>.</td></tr>
+                <tr><td><strong>Leyes de De Morgan</strong></td><td><strong>Intercambio</strong> de Notación</td><td>1. $P((A\cap B)^{c}) = P(A^{c}\cup B^{c})$<br>2. $\mathbf{P((A\cup B)^{c}) = P(A^{c}\cap B^{c})}$</td><td>Permiten pasar de la unión a la intersección de contrarios (y viceversa).</td></tr>
+                <tr><td><strong>Caso Frecuente</strong></td><td><strong>Ni A ni B</strong></td><td>$\mathbf{P(A^{c}\cap B^{c})=1-P(A\cup B)}$</td><td>Probabilidad de que <strong>no ocurra ninguno</strong> de los dos sucesos.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="separator"></div>
+
+        <h2 class="text-3xl font-bold text-gray-800 mt-8 mb-4">II. Intersección, Probabilidad Condicionada e Independencia</h2>
+
+        <h3 class="text-xl font-semibold text-blue-600 mt-6 mb-3">1. Probabilidad Condicionada y Regla General</h3>
+        <p class="text-gray-700">Es la probabilidad de que ocurra $B$ sabiendo que $A$ ya ocurrió.</p>
+        <div class="math-block">
+            $$P(B/A)=\frac{P(A\cap B)}{P(A)}$$
+        </div>
+
+        <h3 class="text-xl font-semibold text-blue-600 mt-8 mb-3">2. Cálculo de la Intersección ($P(A\cap B)$)</h3>
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead>
+                <tr>
+                    <th class="px-6 py-3 bg-blue-600 text-xs font-medium uppercase tracking-wider rounded-tl-lg">Condición del Suceso</th>
+                    <th class="px-6 py-3 bg-blue-600 text-xs font-medium uppercase tracking-wider">Fórmula</th>
+                    <th class="px-6 py-3 bg-blue-600 text-xs font-medium uppercase tracking-wider rounded-tr-lg">Origen</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                <tr><td><strong>Regla General del Producto</strong> (Dependientes)</td><td>$$\mathbf{P(A\cap B)=P(A)\cdot P(B/A)}$$</td><td>Despejando la Condicionada (II.1).</td></tr>
+                <tr><td><strong>Despejando de la Unión</strong></td><td>$$\mathbf{P(A\cap B)=P(A)+P(B)-P(A\cup B)}$$</td><td>Despejando la fórmula de la Unión (I.2).</td></tr>
+                <tr><td><strong>Sucesos Independientes</strong> (Simplificada)</td><td>$$\mathbf{P(A\cap B)=P(A)\cdot P(B)}$$</td><td>Si $P(B/A)=P(B)$.</td></tr>
+            </tbody>
+        </table>
+
+        <h3 class="text-xl font-semibold text-blue-600 mt-8 mb-3">3. Independencia de Sucesos (Casos Complementarios)</h3>
+        <p class="text-gray-700">Si los sucesos $\mathbf{A}$ y $\mathbf{B}$ son <strong>Independientes</strong>, la independencia se mantiene para todas las combinaciones con sus contrarios.</p>
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead>
+                <tr>
+                    <th class="px-6 py-3 bg-blue-600 text-xs font-medium uppercase tracking-wider rounded-tl-lg">Relación</th>
+                    <th class="px-6 py-3 bg-blue-600 text-xs font-medium uppercase tracking-wider">Condición de Independencia</th>
+                    <th class="px-6 py-3 bg-blue-600 text-xs font-medium uppercase tracking-wider rounded-tr-lg">Implicación</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                <tr><td><strong>A y B</strong></td><td>$P(A\cap B)=P(A)\cdot P(B)$</td><td rowspan="4" class="text-center font-bold text-green-700">Si $A$ y $B$ son independientes, también lo son todos los pares con sus contrarios.</td></tr>
+                <tr><td><strong>A y $B^{c}$ (No B)</strong></td><td>$P(A\cap B^{c})=P(A)\cdot P(B^{c})$</td></tr>
+                <tr><td><strong>$A^{c}$ (No A) y B</strong></td><td>$P(A^{c}\cap B)=P(A^{c})\cdot P(B)$</td></tr>
+                <tr><td><strong>$A^{c}$ (No A) y $B^{c}$ (No B)</strong></td><td>$P(A^{c}\cap B^{c})=P(A^{c})\cdot P(B^{c})$</td></tr>
+            </tbody>
+        </table>
+
+        <div class="separator"></div>
+
+        <h2 class="text-3xl font-bold text-gray-800 mt-8 mb-4">III. Estrategias Gráficas y Teoremas Avanzados</h2>
+        <p class="text-gray-700">Se aplican en experimentos compuestos (con múltiples etapas o causas).</p>
+
+        <h3 class="text-xl font-semibold text-blue-600 mt-6 mb-3">Estrategia: Tabla de Contingencia 📊</h3>
+        <p class="text-gray-700">Se usa si el problema tiene dos sucesos ($A$ y $B$) y sus contrarios.</p>
+
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead>
+                <tr>
+                    <th class="px-6 py-3 bg-blue-600 text-xs font-medium uppercase tracking-wider rounded-tl-lg"></th>
+                    <th class="px-6 py-3 bg-blue-600 text-xs font-medium uppercase tracking-wider"><strong>B</strong> (Efecto)</th>
+                    <th class="px-6 py-3 bg-blue-600 text-xs font-medium uppercase tracking-wider"><strong>$B^{c}$</strong> (No Efecto)</th>
+                    <th class="px-6 py-3 bg-blue-600 text-xs font-medium uppercase tracking-wider rounded-tr-lg"><strong>P(Total)</strong> (Marginal)</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                <tr><td><strong>A</strong> (Causa 1)</td><td>$P(A\cap B)$</td><td>$P(A\cap B^{c})$</td><td class="font-bold">$\mathbf{P(A)}$</td></tr>
+                <tr><td><strong>$A^{c}$</strong> (Causa 2)</td><td>$P(A^{c}\cap B)$</td><td>$P(A^{c}\cap B^{c})$</td><td class="font-bold">$\mathbf{P(A^{c})}$</td></tr>
+                <tr><td><strong>P(Total)</strong> (Marginal)</td><td class="font-bold">$\mathbf{P(B)}$</td><td class="font-bold">$\mathbf{P(B^{c})}$</td><td class="font-bold">**1**</td></tr>
+            </tbody>
+        </table>
+        <p class="text-sm text-gray-500 mt-2">
+            *Probabilidad Condicionada usando la tabla:* $P(B/A) = \frac{P(A\cap B)}{P(A)}$
+        </p>
+
+
+        <h3 class="text-xl font-semibold text-blue-600 mt-10 mb-3">Estrategia: Diagrama de Árbol 🌳</h3>
+        <p class="text-gray-700">Se usa si el problema tiene múltiples causas ($A_i$) que particionan el espacio muestral.</p>
+
+        <h4 class="text-lg font-bold text-gray-700 mt-6 mb-2">Teorema de la Probabilidad Total</h4>
+        <p class="text-gray-700">**Pregunta:** ¿Cuál es la probabilidad del <strong>Efecto</strong> ($B$)? (Pregunta directa)</p>
+        <div class="math-block bg-green-50 text-green-800">
+            $$\mathbf{P(B)=\sum_{i=1}^{n}P(A_{i})\cdot P(B/A_{i})}$$
+            <p class="mt-4 font-mono text-sm">
+                **Flujo Conceptual (Sumar Ramas):**
+            </p>
+            $$\text{P(B)} = \overbrace{\text{P(Causa 1)} \times \text{P(B / Causa 1)}}^{\text{Rama } 1 \text{ (Multiplicación)}} \mathbf{+} \overbrace{\text{P(Causa 2)} \times \text{P(B / Causa 2)}}^{\text{Rama } 2 \text{ (Multiplicación)}} \mathbf{+} \dots$$
+        </div>
+
+        <h4 class="text-lg font-bold text-gray-700 mt-10 mb-2">Teorema de Bayes</h4>
+        <p class="text-gray-700">**Pregunta:** ¿Cuál es la probabilidad de una <strong>Causa Específica</strong> ($A_j$), dado que el Efecto $B$ ya ocurrió? (Pregunta inversa)</p>
+        <div class="math-block bg-yellow-50 text-yellow-800">
+            $$\mathbf{P(A_{j}/B)=\frac{P(A_{j})\cdot P(B/A_{j})}{P(B) \text{ (Probabilidad Total)}}}$$
+            <p class="mt-4 font-mono text-sm">
+                **Flujo Conceptual (Rama sobre Total):**
+            </p>
+            $$\mathbf{P(A_{j}/B)} = \frac{\overbrace{\text{P(Causa } j) \times \text{P(B / Causa } j)}^{\text{Rama de interés (Numerador)}}}{\overbrace{\text{P(B) total (Suma de todas las ramas)}}}$$
+        </div>
+
+    </div>
+</body>
+</html>
